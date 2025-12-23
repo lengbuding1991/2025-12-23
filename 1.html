@@ -248,46 +248,12 @@
                   class="w-full h-auto rounded-xl shadow-lg"
                 />
               </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 text-dark">
-                引言：为什么需要前端工程化？
-              </h2>
-              <p class="mb-6 text-lg leading-relaxed">
-                随着Web应用的复杂度不断提升，前端开发已经从简单的HTML/CSS/JS编写演变为一个需要系统化管理的工程领域。前端工程化就是将前端开发流程规范化、标准化，包括代码规范、构建流程、部署流程等，以提高开发效率和代码质量。
-              </p>
-              <p class="mb-6 text-lg leading-relaxed">
-                本文将从构建工具选择、模块化开发、代码质量控制、自动化测试和部署流程五个方面，详细介绍现代前端工程化的最佳实践。
-              </p>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
-                一、构建工具的选择：Webpack vs Vite
-              </h2>
-              <h3 class="text-xl md:text-2xl font-semibold mb-4 text-primary">
-                1.1 Webpack：成熟稳定的选择
-              </h3>
-              <p class="mb-6 text-lg leading-relaxed">
-                Webpack作为最流行的前端构建工具之一，拥有丰富的插件生态和成熟的解决方案，适合大型复杂项目：
-              </p>
               <div
                 class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8"
               >
                 <pre>
         <code class='text-sm'>
         // webpack.config.js 示例
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-      { test: /\.js$/, use: 'babel-loader' },
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
-  ]
-};
     </code>
     </pre>
               </div>
@@ -303,205 +269,12 @@ module.exports = {
                 <pre>
         <code class='text-sm'>
         // vite.config.js 示例
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-export default defineConfig({
-  plugins: [vue()],
-  server: {
-    port: 3000,
-    open: true
-  },
-  build: {
-    outDir: 'dist',
-    rollupOptions: {
-      // 自定义rollup配置
-    }
-  }
-});
     </code>
     </pre>
               </div>
-              <div class="bg-blue-50 border-l-4 border-blue-500 p-5 mb-8">
-                <h4 class="font-bold text-blue-700 mb-2">选择建议：</h4>
-                <p class="text-blue-800">
-                  对于新项目，推荐使用Vite以获得更好的开发体验；对于需要兼容旧系统或有复杂构建需求的项目，Webpack仍是可靠选择。
-                </p>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
-                二、模块化开发：从CommonJS到ES Modules
-              </h2>
-              <p class="mb-6 text-lg leading-relaxed">
-                模块化是前端工程化的核心概念之一，它允许我们将代码分割为独立的文件，提高可维护性和复用性。
-              </p>
-              <h3 class="text-xl md:text-2xl font-semibold mb-4 text-primary">
-                2.1 CommonJS规范
-              </h3>
-              <p class="mb-6 text-lg leading-relaxed">
-                CommonJS是Node.js采用的模块化规范，使用require和module.exports：
-              </p>
-              <div
-                class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8"
-              >
-                <pre>
-        <code class='text-sm'>
-        // utils.js
-function formatDate(date) {
-  // 实现日期格式化
-}
-module.exports = {
-  formatDate
-};
-// app.js
-const { formatDate } = require('./utils.js');
-console.log(formatDate(new Date()));
-    </code>
-    </pre>
-              </div>
-              <h3 class="text-xl md:text-2xl font-semibold mb-4 text-primary">
-                2.2 ES Modules规范
-              </h3>
-              <p class="mb-6 text-lg leading-relaxed">
-                ES Modules是ECMAScript标准的模块化方案，使用import和export：
-              </p>
-              <div
-                class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8"
-              >
-                <pre>
-        <code class='text-sm'>
-        // utils.js
-export function formatDate(date) {
-  // 实现日期格式化
-}
-// app.js
-import { formatDate } from './utils.js';
-console.log(formatDate(new Date()));
-    </code>
-    </pre>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
-                三、代码质量控制：ESLint与Prettier
-              </h2>
-              <p class="mb-6 text-lg leading-relaxed">
-                保持一致的代码风格和质量是团队协作的基础，ESLint和Prettier是目前最流行的工具组合。
-              </p>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
-                  <div class="text-primary text-3xl mb-4">
-                    <i class="fas fa-check-circle"> </i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-3">ESLint</h3>
-                  <p class="text-gray-700">
-                    专注于代码质量检查，能够发现代码中的语法错误、潜在问题和不规范写法。
-                  </p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md card-hover">
-                  <div class="text-primary text-3xl mb-4">
-                    <i class="fas fa-paint-brush"> </i>
-                  </div>
-                  <h3 class="text-xl font-semibold mb-3">Prettier</h3>
-                  <p class="text-gray-700">
-                    专注于代码格式化，自动调整代码缩进、空格、换行等格式问题，保持一致的代码风格。
-                  </p>
-                </div>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
-                四、自动化测试：保障代码可靠性
-              </h2>
-              <p class="mb-6 text-lg leading-relaxed">
-                自动化测试是工程化流程中不可或缺的一环，它能够帮助我们及早发现问题，保障代码质量。
-              </p>
-              <div class="overflow-x-auto mb-8">
-                <table
-                  class="min-w-full bg-white border border-gray-200 rounded-lg"
-                >
-                  <thead>
-                    <tr class="bg-gray-100 text-left">
-                      <th class="py-3 px-4 border-b">测试类型</th>
-                      <th class="py-3 px-4 border-b">工具</th>
-                      <th class="py-3 px-4 border-b">应用场景</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="py-3 px-4 border-b font-medium">单元测试</td>
-                      <td class="py-3 px-4 border-b">Jest, Mocha</td>
-                      <td class="py-3 px-4 border-b">测试独立的函数或组件</td>
-                    </tr>
-                    <tr class="bg-gray-50">
-                      <td class="py-3 px-4 border-b font-medium">集成测试</td>
-                      <td class="py-3 px-4 border-b">
-                        React Testing Library, Vue Test Utils
-                      </td>
-                      <td class="py-3 px-4 border-b">测试组件之间的交互</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 px-4 border-b font-medium">端到端测试</td>
-                      <td class="py-3 px-4 border-b">Cypress, Playwright</td>
-                      <td class="py-3 px-4 border-b">测试完整的用户流程</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
-                五、部署流程：CI/CD与自动化部署
-              </h2>
-              <p class="mb-6 text-lg leading-relaxed">
-                现代前端项目通常采用CI/CD（持续集成/持续部署）流程，实现代码提交后的自动构建、测试和部署。
-              </p>
-              <div class="mb-8">
-                <img
-                  src="https://design.gemcoder.com/staticResource/echoAiSystemImages/20e734d618f42e5d9b688ef772729067.png"
-                  alt="CI/CD流程"
-                  class="w-full h-auto rounded-xl shadow-lg"
-                />
-              </div>
-              <p class="mb-6 text-lg leading-relaxed">
-                常用的CI/CD工具包括GitHub Actions、GitLab
-                CI、Jenkins等。以GitHub Actions为例，我们可以配置如下工作流：
-              </p>
-              <div
-                class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-8"
-              >
-                <pre>
-        <code class='text-sm'>
-        // .github/workflows/ci.yml
-name: CI/CD Pipeline
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Run linter
-      run: npm run lint
-      
-    - name: Run tests
-      run: npm test
-      
-    - name: Build
-      run: npm run build
-      
-    - name: Deploy to production
-      if: github.ref == 'refs/heads/main'
-      uses: some-deployment-action@v1
-      with:
-        # 部署配置
-    </code>
-    </pre>
+              
+              
+            
               </div>
               <h2 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-dark">
                 结语：工程化是持续演进的过程
@@ -588,30 +361,6 @@ jobs:
                     </div>
                   </div>
                 </a>
-                <a href="javascript:void(0);" class="block group">
-                  <div
-                    class="bg-white rounded-lg overflow-hidden shadow-md card-hover"
-                  >
-                    <img
-                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/94506f1ed8536b3d04b4371ea48a5f4a.png"
-                      alt="响应式设计最佳实践"
-                      class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div class="p-5">
-                      <div class="text-sm text-gray-500 mb-2">
-                        2023年9月12日
-                      </div>
-                      <h4
-                        class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors"
-                      >
-                        响应式设计最佳实践：从移动优先到多端适配
-                      </h4>
-                      <p class="text-gray-600 line-clamp-2">
-                        详细介绍响应式设计的核心原则和实现方法，帮助你构建真正适配各种设备的Web界面...
-                      </p>
-                    </div>
-                  </div>
-                </a>
               </div>
             </div>
             <!-- 评论区 -->
@@ -661,50 +410,6 @@ jobs:
                         >
                           <i class="far fa-thumbs-up mr-1"> </i>
                           赞同 (12)
-                        </button>
-                      </div>
-                    </div>
-                    <div class="flex gap-4">
-                      <img
-                        src="https://design.gemcoder.com/staticResource/echoAiSystemImages/9faf8744c85f4be9b489f22671dcd601.png"
-                        alt="用户头像"
-                        class="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div class="flex-1">
-                        <div class="flex justify-between items-center mb-1">
-                          <h5 class="font-semibold">王设计师</h5>
-                          <span class="text-sm text-gray-500"> 1周前 </span>
-                        </div>
-                        <p class="text-gray-700 mb-3">
-                          作为设计师转前端的开发者，这篇文章帮我系统梳理了工程化的概念，感谢作者的分享！
-                        </p>
-                        <button
-                          class="text-primary text-sm flex items-center hover:underline"
-                        >
-                          <i class="far fa-thumbs-up mr-1"> </i>
-                          赞同 (8)
-                        </button>
-                      </div>
-                    </div>
-                    <div class="flex gap-4">
-                      <img
-                        src="https://design.gemcoder.com/staticResource/echoAiSystemImages/dda5a4534fdb6cbabd9ccd755a705b2b.png"
-                        alt="用户头像"
-                        class="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div class="flex-1">
-                        <div class="flex justify-between items-center mb-1">
-                          <h5 class="font-semibold">赵架构师</h5>
-                          <span class="text-sm text-gray-500"> 2周前 </span>
-                        </div>
-                        <p class="text-gray-700 mb-3">
-                          关于CI/CD部分可以补充一些具体的部署策略，比如蓝绿部署、灰度发布等高级技巧。总体来说是一篇高质量的文章！
-                        </p>
-                        <button
-                          class="text-primary text-sm flex items-center hover:underline"
-                        >
-                          <i class="far fa-thumbs-up mr-1"> </i>
-                          赞同 (15)
                         </button>
                       </div>
                     </div>
@@ -788,59 +493,6 @@ jobs:
                       <i class="fas fa-folder-open mr-2"> </i>
                       前端工程化
                     </span>
-                    <span
-                      class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
-                    >
-                      12
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0);"
-                    class="flex justify-between items-center text-gray-700 hover:text-primary transition-colors"
-                  >
-                    <span>
-                      <i class="fas fa-folder-open mr-2"> </i>
-                      性能优化
-                    </span>
-                    <span
-                      class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
-                    >
-                      8
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0);"
-                    class="flex justify-between items-center text-gray-700 hover:text-primary transition-colors"
-                  >
-                    <span>
-                      <i class="fas fa-folder-open mr-2"> </i>
-                      JavaScript深入
-                    </span>
-                    <span
-                      class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
-                    >
-                      15
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0);"
-                    class="flex justify-between items-center text-gray-700 hover:text-primary transition-colors"
-                  >
-                    <span>
-                      <i class="fas fa-folder-open mr-2"> </i>
-                      CSS技巧
-                    </span>
-                    <span
-                      class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
-                    >
-                      10
-                    </span>
                   </a>
                 </li>
                 <li>
@@ -856,22 +508,6 @@ jobs:
                       class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
                     >
                       20
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="javascript:void(0);"
-                    class="flex justify-between items-center text-gray-700 hover:text-primary transition-colors"
-                  >
-                    <span>
-                      <i class="fas fa-folder-open mr-2"> </i>
-                      工具推荐
-                    </span>
-                    <span
-                      class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full"
-                    >
-                      7
                     </span>
                   </a>
                 </li>
@@ -905,48 +541,7 @@ jobs:
                 >
                   #性能优化
                 </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #JavaScript
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #CSS
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #React
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #Vue
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #TypeScript
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #模块化
-                </a>
-                <a
-                  href="javascript:void(0);"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-primary hover:text-white transition-colors"
-                >
-                  #CI/CD
-                </a>
+              
               </div>
             </div>
             <!-- 最新文章 -->
@@ -969,46 +564,6 @@ jobs:
                       <p class="text-sm text-gray-500 mt-1">
                         <i class="far fa-calendar-alt mr-1"> </i>
                         2023年10月28日
-                      </p>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="flex gap-3 group">
-                    <img
-                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/e6e623517d85ad1df605d456cb04a8db.png"
-                      alt="文章缩略图"
-                      class="w-20 h-20 rounded object-cover flex-shrink-0"
-                    />
-                    <div>
-                      <h4
-                        class="font-medium text-gray-800 group-hover:text-primary transition-colors line-clamp-2"
-                      >
-                        响应式设计最佳实践：从移动优先到多端适配
-                      </h4>
-                      <p class="text-sm text-gray-500 mt-1">
-                        <i class="far fa-calendar-alt mr-1"> </i>
-                        2023年9月12日
-                      </p>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="flex gap-3 group">
-                    <img
-                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/3b6471d5da99af266f7c1b620a6f803c.png"
-                      alt="文章缩略图"
-                      class="w-20 h-20 rounded object-cover flex-shrink-0"
-                    />
-                    <div>
-                      <h4
-                        class="font-medium text-gray-800 group-hover:text-primary transition-colors line-clamp-2"
-                      >
-                        TypeScript高级类型技巧与实战应用
-                      </h4>
-                      <p class="text-sm text-gray-500 mt-1">
-                        <i class="far fa-calendar-alt mr-1"> </i>
-                        2023年8月30日
                       </p>
                     </div>
                   </a>

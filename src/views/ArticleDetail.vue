@@ -1,299 +1,1030 @@
 <template>
-  <section class="article-detail-section">
-    <div class="container">
-      <button class="back-button" @click="goBack">
-        <i class="fas fa-arrow-left"></i> 返回文章列表
-      </button>
-      
-      <article v-if="article" class="article-detail">
-        <div class="article-header">
+  <div class="article-container">
+    <!-- 文章头部区域 -->
+    <section class="article-header">
+      <div class="container">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="category-tag">技术分享</div>
+          <h1 class="article-title">现代前端工程化实践指南</h1>
           <div class="article-meta">
-            <span class="article-date">{{ article.date }}</span>
-            <span class="article-category">{{ article.category }}</span>
+            <div class="author-info">
+              <img 
+                src="https://design.gemcoder.com/staticResource/echoAiSystemImages/7054904f2e1ff6a86735e5618d9f935e.png" 
+                alt="作者头像" 
+                class="author-avatar"
+              />
+              <span>张开发</span>
+            </div>
+            <span class="divider">•</span>
+            <span class="publish-date">
+              <i class="far fa-calendar-alt"></i>
+              2023年11月15日
+            </span>
+            <span class="divider">•</span>
+            <span class="read-time">
+              <i class="far fa-clock"></i>
+              12分钟阅读
+            </span>
           </div>
-          <h1 class="article-title">{{ article.title }}</h1>
+          <div class="article-tags">
+            <span class="tag">#前端工程化</span>
+            <span class="tag">#Webpack</span>
+            <span class="tag">#Vite</span>
+            <span class="tag">#性能优化</span>
+          </div>
         </div>
-        
-        <div class="article-image">
-          <div class="image-placeholder"></div>
-        </div>
-        
-        <div class="article-content">
-          <div class="article-body">
-            <p v-for="(paragraph, index) in article.content" :key="index">
-              {{ paragraph }}
+      </div>
+    </section>
+
+    <!-- 文章内容区域 -->
+    <section class="article-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <!-- 文章主体 -->
+          <div class="main-content">
+            <div class="featured-image">
+              <img 
+                src="https://design.gemcoder.com/staticResource/echoAiSystemImages/07fea791d1050c61fc4841d58b9e709d.png" 
+                alt="前端工程化实践"
+                class="image"
+              />
+            </div>
+            
+            <div class="code-block">
+              <pre>
+                <code>// webpack.config.js 示例</code>
+              </pre>
+            </div>
+            
+            <h3 class="section-title">1.2 Vite：极速的开发体验</h3>
+            <p class="paragraph">
+              Vite基于浏览器原生ES模块，提供了极速的开发启动和热更新体验，越来越受到开发者青睐：
             </p>
+            
+            <div class="code-block">
+              <pre>
+                <code>// vite.config.js 示例</code>
+              </pre>
+            </div>
+            
+            <h2 class="conclusion-title">结语：工程化是持续演进的过程</h2>
+            <p class="paragraph">
+              前端工程化不是一成不变的标准，而是随着技术发展不断演进的过程。作为开发者，我们需要持续学习和实践新的工具和方法，不断优化我们的开发流程。
+            </p>
+            <p class="paragraph">
+              希望本文能够帮助你建立对前端工程化的系统认识，在实际项目中应用这些最佳实践，提升开发效率和代码质量。
+            </p>
+            
+            <!-- 文章作者信息 -->
+            <div class="author-section">
+              <div class="author-card">
+                <img 
+                  src="https://design.gemcoder.com/staticResource/echoAiSystemImages/6963a53409cbf8c8e4a49e41e65e5812.png" 
+                  alt="作者头像" 
+                  class="author-large-avatar"
+                />
+                <div class="author-details">
+                  <h3 class="author-name">张开发</h3>
+                  <p class="author-title">资深前端架构师 | 技术作家 | 开源贡献者</p>
+                  <p class="author-bio">
+                    拥有8年前端开发经验，专注于前端工程化和性能优化，曾主导多个大型Web应用的架构设计和技术选型。
+                  </p>
+                  <div class="author-social">
+                    <a href="javascript:void(0);" class="social-link">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="social-link">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="social-link">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="social-link">
+                      <i class="fab fa-medium"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- 相关文章推荐 -->
+            <div class="related-articles">
+              <h3 class="related-title">相关推荐</h3>
+              <div class="articles-grid">
+                <a href="javascript:void(0);" class="article-card">
+                  <img 
+                    src="https://design.gemcoder.com/staticResource/echoAiSystemImages/2a519e362183d2a08af1a4c96de1b92e.png" 
+                    alt="前端性能优化指南"
+                    class="card-image"
+                  />
+                  <div class="card-content">
+                    <div class="card-date">2023年10月28日</div>
+                    <h4 class="card-title">前端性能优化指南：从加载到渲染</h4>
+                    <p class="card-excerpt">
+                      深入探讨现代前端性能优化技术，包括资源加载优化、渲染性能提升和运行时优化等方面...
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            
+            <!-- 评论区 -->
+            <div class="comments-section">
+              <h3 class="comments-title">评论区</h3>
+              <div class="comments-container">
+                <!-- 发表评论 -->
+                <div class="comment-form-section">
+                  <h4 class="form-title">发表评论</h4>
+                  <form class="comment-form">
+                    <textarea 
+                      class="comment-textarea"
+                      rows="4"
+                      placeholder="分享你的想法..."
+                    ></textarea>
+                    <div class="form-actions">
+                      <button type="submit" class="submit-button">提交评论</button>
+                    </div>
+                  </form>
+                </div>
+                
+                <!-- 最新评论 -->
+                <div class="latest-comments">
+                  <h4 class="comments-subtitle">最新评论 (5)</h4>
+                  <div class="comments-list">
+                    <div class="comment-item">
+                      <img 
+                        src="https://design.gemcoder.com/staticResource/echoAiSystemImages/a62614d776776aaaa52562ece25bada9.png" 
+                        alt="用户头像"
+                        class="comment-avatar"
+                      />
+                      <div class="comment-content">
+                        <div class="comment-header">
+                          <h5 class="comment-author">李工程师</h5>
+                          <span class="comment-date">3天前</span>
+                        </div>
+                        <p class="comment-text">
+                          非常全面的前端工程化指南！特别是关于Webpack和Vite的对比分析很有帮助，解决了我一直以来的困惑。
+                        </p>
+                        <button class="like-button">
+                          <i class="far fa-thumbs-up"></i>
+                          赞同 (12)
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="load-more-button">查看更多评论</button>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="article-footer">
-            <div class="article-tags">
-              <span v-for="(tag, index) in article.tags" :key="index" class="article-tag">
-                {{ tag }}
-              </span>
+          <!-- 侧边栏 -->
+          <div class="sidebar">
+            <!-- 搜索框 -->
+            <div class="search-box">
+              <div class="search-input-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input 
+                  type="text" 
+                  placeholder="搜索文章..."
+                  class="search-input"
+                />
+              </div>
+            </div>
+            
+            <!-- 作者信息 -->
+            <div class="author-sidebar">
+              <div class="author-sidebar-header">
+                <img 
+                  src="https://design.gemcoder.com/staticResource/echoAiSystemImages/9845b17161a7a18614f82fb57a7b9688.png" 
+                  alt="作者头像"
+                  class="author-sidebar-avatar"
+                />
+                <h3 class="author-sidebar-name">张开发</h3>
+                <p class="author-sidebar-title">资深前端架构师</p>
+              </div>
+              <p class="author-sidebar-bio">
+                专注于前端工程化、性能优化和用户体验，分享实用的技术干货。
+              </p>
+              <div class="author-sidebar-social">
+                <a href="javascript:void(0);" class="social-link-sidebar">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="javascript:void(0);" class="social-link-sidebar">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="javascript:void(0);" class="social-link-sidebar">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="javascript:void(0);" class="social-link-sidebar">
+                  <i class="fab fa-medium"></i>
+                </a>
+              </div>
+            </div>
+            
+            <!-- 文章分类 -->
+            <div class="categories">
+              <h3 class="sidebar-section-title">文章分类</h3>
+              <ul class="category-list">
+                <li>
+                  <a href="javascript:void(0);" class="category-item">
+                    <i class="fas fa-folder-open"></i>
+                    <span>前端工程化</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" class="category-item">
+                    <i class="fas fa-folder-open"></i>
+                    <span>框架应用</span>
+                    <span class="category-count">20</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- 热门标签 -->
+            <div class="tags">
+              <h3 class="sidebar-section-title">热门标签</h3>
+              <div class="tag-list">
+                <a href="javascript:void(0);" class="tag-item">#前端工程化</a>
+                <a href="javascript:void(0);" class="tag-item">#Webpack</a>
+                <a href="javascript:void(0);" class="tag-item">#Vite</a>
+                <a href="javascript:void(0);" class="tag-item">#性能优化</a>
+              </div>
+            </div>
+            
+            <!-- 最新文章 -->
+            <div class="latest-articles">
+              <h3 class="sidebar-section-title">最新文章</h3>
+              <ul class="latest-articles-list">
+                <li>
+                  <a href="javascript:void(0);" class="latest-article-item">
+                    <img 
+                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/9eefac78f534423dd4355e80fc7b55bc.png" 
+                      alt="文章缩略图"
+                      class="latest-article-image"
+                    />
+                    <div class="latest-article-info">
+                      <h4 class="latest-article-title">前端性能优化指南：从加载到渲染</h4>
+                      <p class="latest-article-date">
+                        <i class="far fa-calendar-alt"></i>
+                        2023年10月28日
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0);" class="latest-article-item">
+                    <img 
+                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/7add1cc981579a7f76ee50869a2f006e.png" 
+                      alt="文章缩略图"
+                      class="latest-article-image"
+                    />
+                    <div class="latest-article-info">
+                      <h4 class="latest-article-title">React组件设计模式：从基础到高级</h4>
+                      <p class="latest-article-date">
+                        <i class="far fa-calendar-alt"></i>
+                        2023年7月18日
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </article>
-      
-      <div v-else class="article-not-found">
-        <h2>文章未找到</h2>
-        <p>抱歉，您请求的文章不存在。</p>
-        <button class="back-button" @click="goBack">返回文章列表</button>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+// 从路由参数获取文章ID
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const router = useRouter()
-const article = ref(null)
-
-// 文章数据
-const articlesData = [
-  {
-    id: 1,
-    title: 'Vue 3 Composition API 入门指南',
-    excerpt: '本文将带你深入了解 Vue 3 Composition API 的核心概念和使用方法，帮助你构建更灵活、更可维护的 Vue 应用。',
-    content: [
-      'Vue 3 的 Composition API 是 Vue 3 中引入的一个重要特性，它提供了一种更灵活的方式来组织组件逻辑。与传统的 Options API 相比，Composition API 允许我们根据逻辑功能而不是生命周期钩子来组织代码。',
-      '在本文中，我们将学习如何使用 Composition API 来构建 Vue 组件，包括如何定义响应式数据、如何使用计算属性和方法、如何处理生命周期事件等。',
-      '首先，让我们了解一下 Composition API 的基本概念。Composition API 主要包括以下几个核心函数：',
-      'ref() - 用于创建响应式的基本类型数据',
-      'reactive() - 用于创建响应式的对象或数组',
-      'computed() - 用于创建计算属性',
-      'watch() - 用于监听数据变化',
-      'onMounted(), onUpdated(), onUnmounted() - 用于处理生命周期事件',
-      '使用 Composition API 的最大好处是代码的可复用性和可维护性。我们可以将相关的逻辑组织在一起，形成可复用的组合函数，从而提高代码的质量和开发效率。',
-      '在接下来的章节中，我们将通过实际的代码示例来详细介绍这些概念和用法。'
-    ],
-    date: '2024-01-15',
-    category: '前端开发',
-    tags: ['Vue 3', 'Composition API', '前端开发', 'JavaScript']
-  },
-  {
-    id: 2,
-    title: '现代前端性能优化最佳实践',
-    excerpt: '探讨现代前端开发中的性能优化技巧，包括代码分割、懒加载、缓存策略等，提升用户体验和页面加载速度。',
-    content: [
-      '在现代前端开发中，性能优化是一个非常重要的话题。一个性能良好的网站不仅可以提供更好的用户体验，还可以提高用户留存率和转化率。',
-      '本文将介绍一些现代前端性能优化的最佳实践，包括：',
-      '1. 代码分割和懒加载 - 通过将代码分割成多个小块，并在需要时才加载，可以显著减少初始加载时间。',
-      '2. 图片优化 - 使用适当的图片格式、压缩图片大小、使用响应式图片等方法来优化图片加载。',
-      '3. 缓存策略 - 合理使用浏览器缓存、CDN缓存等技术来减少网络请求。',
-      '4. 减少重排和重绘 - 通过合理的DOM操作和CSS样式来减少浏览器的重排和重绘。',
-      '5. 使用现代构建工具 - 使用Webpack、Vite等现代构建工具来优化代码打包和编译。',
-      '6. 监控和分析 - 使用Lighthouse、WebPageTest等工具来监控和分析网站性能，找出性能瓶颈。',
-      '通过实施这些最佳实践，我们可以构建出性能优异的前端应用，为用户提供更好的体验。'
-    ],
-    date: '2024-01-10',
-    category: '性能优化',
-    tags: ['性能优化', '前端开发', '代码分割', '懒加载']
-  },
-  {
-    id: 3,
-    title: 'TypeScript 类型系统详解',
-    excerpt: '深入理解 TypeScript 的类型系统，包括基本类型、高级类型、泛型等，编写更安全、更可靠的代码。',
-    content: [
-      'TypeScript 是 JavaScript 的一个超集，它添加了静态类型检查功能。TypeScript 的类型系统是其最强大的特性之一，它可以帮助我们在编译时发现错误，提高代码的质量和可维护性。',
-      '本文将详细介绍 TypeScript 的类型系统，包括：',
-      '1. 基本类型 - number、string、boolean、null、undefined、void、symbol、bigint',
-      '2. 高级类型 - 联合类型、交叉类型、类型别名、接口等',
-      '3. 泛型 - 如何使用泛型来创建可复用的组件和函数',
-      '4. 类型断言和类型守卫 - 如何在运行时进行类型检查',
-      '5. 模块和命名空间 - 如何组织和管理 TypeScript 代码',
-      '6. 声明文件 - 如何为第三方 JavaScript 库提供类型定义',
-      '通过学习 TypeScript 的类型系统，我们可以编写更安全、更可靠的代码，减少运行时错误，提高开发效率。',
-      'TypeScript 的类型系统虽然强大，但也有一定的学习曲线。建议初学者从基本类型开始学习，逐步掌握更高级的特性。'
-    ],
-    date: '2024-01-05',
-    category: 'TypeScript',
-    tags: ['TypeScript', '类型系统', '前端开发', 'JavaScript']
-  }
-]
-
-// 根据路由参数获取文章
-const articleId = computed(() => parseInt(route.params.id))
-
-onMounted(() => {
-  article.value = articlesData.find(item => item.id === articleId.value)
-})
-
-// 返回文章列表
-const goBack = () => {
-  router.push('/article')
-}
+const articleId = route.params.id
 </script>
 
-<style scoped>
-.article-detail-section {
-  padding: 100px 0 80px;
-  background-color: #ffffff;
-}
-
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
+<style scoped lang="scss">
+// 文章容器
+.article-container {
+  min-height: 100vh;
   background-color: #f3f4f6;
-  color: #374151;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 40px;
 }
 
-.back-button:hover {
-  background-color: #e5e7eb;
-  color: #1f2937;
-}
-
-.article-detail {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
+// 文章头部区域
 .article-header {
-  margin-bottom: 40px;
+  padding: 112px 0 64px;
+  background: linear-gradient(to right, #10b98190, #10b98180);
+  color: white;
+  text-align: center;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 4px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.article-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .article-meta {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
   font-size: 16px;
-  color: #9ca3af;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
-.article-date,
-.article-category {
+.author-info {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 12px;
 }
 
-.article-title {
-  font-size: 42px;
-  font-weight: 700;
-  color: #1f2937;
-  line-height: 1.2;
-  margin-bottom: 24px;
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.article-image {
-  height: 400px;
-  overflow: hidden;
-  margin-bottom: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+.divider {
+  display: none;
+  @media (min-width: 768px) {
+    display: inline-block;
+  }
 }
 
-.image-placeholder {
-  width: 100%;
-  height: 100%;
-  background-color: #f3f4f6;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-}
-
-.article-content {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #374151;
-}
-
-.article-body p {
-  margin-bottom: 24px;
-}
-
-.article-footer {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid #e5e7eb;
+.publish-date,
+.read-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .article-tags {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
-.article-tag {
-  padding: 8px 16px;
-  background-color: #f3f4f6;
-  color: #6b7280;
-  border-radius: 20px;
+.tag {
+  padding: 4px 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
   font-size: 14px;
-  font-weight: 500;
 }
 
-.article-not-found {
-  text-align: center;
-  padding: 80px 0;
+// 文章内容区域
+.article-content {
+  padding: 64px 0;
+  background-color: white;
 }
 
-.article-not-found h2 {
-  font-size: 32px;
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+}
+
+.main-content {
+  @media (min-width: 1024px) {
+    width: 66.666%;
+  }
+}
+
+.featured-image {
+  margin-bottom: 48px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.code-block {
+  margin-bottom: 32px;
+  padding: 24px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.code-block pre {
+  margin: 0;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.section-title {
+  font-size: 1.5rem;
   font-weight: 600;
+  margin-bottom: 16px;
+  color: #10b981;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  color: #4b5563;
+}
+
+.conclusion-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 48px 0 24px;
   color: #1f2937;
+}
+
+// 作者信息
+.author-section {
+  margin: 64px 0;
+  padding: 32px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.author-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.author-large-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.author-title {
+  font-size: 16px;
+  color: #6b7280;
   margin-bottom: 16px;
 }
 
-.article-not-found p {
-  font-size: 18px;
+.author-bio {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+  max-width: 768px;
+  margin-bottom: 24px;
+}
+
+.author-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+}
+
+.social-link {
+  font-size: 24px;
   color: #6b7280;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #10b981;
+  }
+}
+
+// 相关文章推荐
+.related-articles {
+  margin: 64px 0;
+}
+
+.related-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #1f2937;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.article-card {
+  display: block;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 192px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+
+  .article-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-date {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+  transition: color 0.3s ease;
+
+  .article-card:hover & {
+    color: #10b981;
+  }
+}
+
+.card-excerpt {
+  font-size: 16px;
+  color: #6b7280;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// 评论区
+.comments-section {
+  margin: 64px 0;
+}
+
+.comments-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: #1f2937;
+}
+
+.comments-container {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.comment-form-section {
   margin-bottom: 32px;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .article-detail-section {
-    padding: 80px 0 60px;
-  }
-  
-  .article-title {
-    font-size: 32px;
-  }
-  
-  .article-image {
-    height: 300px;
-  }
-  
-  .article-content {
-    font-size: 16px;
-  }
-  
-  .back-button {
-    padding: 8px 16px;
-    font-size: 14px;
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-textarea {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
   }
 }
 
-@media (max-width: 480px) {
-  .article-title {
-    font-size: 28px;
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  padding: 12px 24px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #059669;
+  }
+}
+
+.latest-comments {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 32px;
+}
+
+.comments-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #1f2937;
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 16px;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.comment-author {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.comment-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.comment-text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 12px;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #10b981;
+  cursor: pointer;
+  transition: text-decoration 0.3s ease;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.load-more-button {
+  width: 100%;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+}
+
+// 侧边栏
+.sidebar {
+  @media (min-width: 1024px) {
+    width: 33.333%;
+  }
+}
+
+.search-box {
+  margin-bottom: 32px;
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #9ca3af;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 12px 12px 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+}
+
+// 侧边栏作者信息
+.author-sidebar {
+  margin-bottom: 32px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.author-sidebar-header {
+  margin-bottom: 16px;
+}
+
+.author-sidebar-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  border: 4px solid rgba(16, 185, 129, 0.2);
+}
+
+.author-sidebar-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #1f2937;
+}
+
+.author-sidebar-title {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.author-sidebar-bio {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+.author-sidebar-social {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-link-sidebar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #6b7280;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: #10b981;
+    color: white;
+  }
+}
+
+// 侧边栏分类
+.categories {
+  margin-bottom: 32px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1f2937;
+  display: block;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #4b5563;
+  transition: color 0.3s ease;
+  padding: 8px 0;
+  width: 100%;
+
+  &:hover {
+    color: #10b981;
+  }
+
+  i {
+    margin-right: 10px;
+    color: #9ca3af;
+    width: 18px;
+    text-align: center;
   }
   
-  .article-image {
-    height: 250px;
+  span:first-of-type {
+    flex: 1;
   }
+}
+
+.category-count {
+  padding: 2px 10px;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  font-size: 14px;
+  border-radius: 9999px;
+  min-width: 20px;
+  text-align: center;
+}
+
+// 侧边栏热门标签
+.tags {
+  margin-bottom: 32px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  padding: 6px 12px;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  font-size: 14px;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-right: 8px;
+  margin-bottom: 8px;
+
+  &:hover {
+    background-color: #10b981;
+    color: white;
+  }
+}
+
+// 侧边栏最新文章
+.latest-articles {
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.latest-articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.latest-article-item {
+  display: flex;
+  gap: 12px;
+  transition: color 0.3s ease;
   
-  .article-meta {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
+  &:hover .latest-article-title {
+    color: #10b981;
   }
+}
+
+.latest-article-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.latest-article-info {
+  flex: 1;
+}
+
+.latest-article-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.latest-article-date {
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 </style>
