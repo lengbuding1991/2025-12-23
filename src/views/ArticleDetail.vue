@@ -1,40 +1,37 @@
 <template>
   <div class="article-container">
     <!-- 文章头部区域 -->
-    <section class="article-header">
-      <div class="container">
-        <div class="max-w-3xl mx-auto text-center">
-          <div class="category-tag">技术分享</div>
-          <h1 class="article-title">现代前端工程化实践指南</h1>
-          <div class="article-meta">
-            <div class="author-info">
-              <img 
-                src="https://design.gemcoder.com/staticResource/echoAiSystemImages/7054904f2e1ff6a86735e5618d9f935e.png" 
-                alt="作者头像" 
-                class="author-avatar"
-              />
-              <span>张开发</span>
-            </div>
-            <span class="divider">•</span>
-            <span class="publish-date">
-              <i class="far fa-calendar-alt"></i>
-              2023年11月15日
-            </span>
-            <span class="divider">•</span>
-            <span class="read-time">
-              <i class="far fa-clock"></i>
-              12分钟阅读
-            </span>
+  <section class="article-header">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="category-tag">{{ articleDetail.category }}</div>
+        <h1 class="article-title">{{ articleDetail.title }}</h1>
+        <div class="article-meta">
+          <div class="author-info">
+            <img 
+              :src="author.avatar" 
+              :alt="author.name" 
+              class="author-avatar"
+            />
+            <span>{{ author.name }}</span>
           </div>
-          <div class="article-tags">
-            <span class="tag">#前端工程化</span>
-            <span class="tag">#Webpack</span>
-            <span class="tag">#Vite</span>
-            <span class="tag">#性能优化</span>
-          </div>
+          <span class="divider">•</span>
+          <span class="publish-date">
+            <i class="far fa-calendar-alt"></i>
+            {{ articleDetail.date }}
+          </span>
+          <span class="divider">•</span>
+          <span class="read-time">
+            <i class="far fa-clock"></i>
+            {{ articleDetail.readTime }}
+          </span>
+        </div>
+        <div class="article-tags">
+          <span class="tag" v-for="tag in articleDetail.tags" :key="tag">{{ tag }}</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- 文章内容区域 -->
     <section class="article-content">
@@ -42,38 +39,31 @@
         <div class="content-wrapper">
           <!-- 文章主体 -->
           <div class="main-content">
+            <!-- 特色图片 -->
             <div class="featured-image">
               <img 
-                src="https://design.gemcoder.com/staticResource/echoAiSystemImages/07fea791d1050c61fc4841d58b9e709d.png" 
-                alt="前端工程化实践"
+                :src="articleDetail.featuredImage" 
+                :alt="articleDetail.title"
                 class="image"
               />
             </div>
             
-            <div class="code-block">
-              <pre>
-                <code>// webpack.config.js 示例</code>
-              </pre>
+            <!-- 文章内容动态渲染 -->
+            <div class="content-body">
+              <template v-for="(item, index) in articleDetail.content" :key="index">
+                <!-- 代码块特殊处理 -->
+                <div v-if="item.type === 'code'" class="code-block">
+                  <pre><code>{{ item.text }}</code></pre>
+                </div>
+                <!-- 其他内容类型 -->
+                <component 
+                  v-else
+                  :is="item.type"
+                  :class="getClassByType(item.type)"
+                  v-html="item.text"
+                ></component>
+              </template>
             </div>
-            
-            <h3 class="section-title">1.2 Vite：极速的开发体验</h3>
-            <p class="paragraph">
-              Vite基于浏览器原生ES模块，提供了极速的开发启动和热更新体验，越来越受到开发者青睐：
-            </p>
-            
-            <div class="code-block">
-              <pre>
-                <code>// vite.config.js 示例</code>
-              </pre>
-            </div>
-            
-            <h2 class="conclusion-title">结语：工程化是持续演进的过程</h2>
-            <p class="paragraph">
-              前端工程化不是一成不变的标准，而是随着技术发展不断演进的过程。作为开发者，我们需要持续学习和实践新的工具和方法，不断优化我们的开发流程。
-            </p>
-            <p class="paragraph">
-              希望本文能够帮助你建立对前端工程化的系统认识，在实际项目中应用这些最佳实践，提升开发效率和代码质量。
-            </p>
             
             <!-- 文章作者信息 -->
             <div class="author-section">
@@ -111,20 +101,23 @@
             <div class="related-articles">
               <h3 class="related-title">相关推荐</h3>
               <div class="articles-grid">
-                <a href="javascript:void(0);" class="article-card">
+                <router-link 
+                  :to="`/article/${article.id}`" 
+                  class="article-card"
+                  v-for="article in relatedArticles" 
+                  :key="article.id"
+                >
                   <img 
-                    src="https://design.gemcoder.com/staticResource/echoAiSystemImages/2a519e362183d2a08af1a4c96de1b92e.png" 
-                    alt="前端性能优化指南"
+                    :src="article.image" 
+                    :alt="article.title"
                     class="card-image"
                   />
                   <div class="card-content">
-                    <div class="card-date">2023年10月28日</div>
-                    <h4 class="card-title">前端性能优化指南：从加载到渲染</h4>
-                    <p class="card-excerpt">
-                      深入探讨现代前端性能优化技术，包括资源加载优化、渲染性能提升和运行时优化等方面...
-                    </p>
+                    <div class="card-date">{{ article.date }}</div>
+                    <h4 class="card-title">{{ article.title }}</h4>
+                    <p class="card-excerpt">{{ article.excerpt }}</p>
                   </div>
-                </a>
+                </router-link>
               </div>
             </div>
             
@@ -149,25 +142,23 @@
                 
                 <!-- 最新评论 -->
                 <div class="latest-comments">
-                  <h4 class="comments-subtitle">最新评论 (5)</h4>
+                  <h4 class="comments-subtitle">最新评论 ({{ totalComments }})</h4>
                   <div class="comments-list">
-                    <div class="comment-item">
+                    <div class="comment-item" v-for="comment in comments" :key="comment.id">
                       <img 
-                        src="https://design.gemcoder.com/staticResource/echoAiSystemImages/a62614d776776aaaa52562ece25bada9.png" 
-                        alt="用户头像"
+                        :src="comment.avatar" 
+                        :alt="comment.author"
                         class="comment-avatar"
                       />
                       <div class="comment-content">
                         <div class="comment-header">
-                          <h5 class="comment-author">李工程师</h5>
-                          <span class="comment-date">3天前</span>
+                          <h5 class="comment-author">{{ comment.author }}</h5>
+                          <span class="comment-date">{{ comment.date }}</span>
                         </div>
-                        <p class="comment-text">
-                          非常全面的前端工程化指南！特别是关于Webpack和Vite的对比分析很有帮助，解决了我一直以来的困惑。
-                        </p>
+                        <p class="comment-text">{{ comment.content }}</p>
                         <button class="like-button">
                           <i class="far fa-thumbs-up"></i>
-                          赞同 (12)
+                          赞同 ({{ comment.likeCount }})
                         </button>
                       </div>
                     </div>
@@ -257,37 +248,21 @@
             <div class="latest-articles">
               <h3 class="sidebar-section-title">最新文章</h3>
               <ul class="latest-articles-list">
-                <li>
-                  <a href="javascript:void(0);" class="latest-article-item">
+                <li v-for="article in latestArticles" :key="article.id">
+                  <router-link :to="`/article/${article.id}`" class="latest-article-item">
                     <img 
-                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/9eefac78f534423dd4355e80fc7b55bc.png" 
-                      alt="文章缩略图"
+                      :src="article.image" 
+                      :alt="article.title"
                       class="latest-article-image"
                     />
                     <div class="latest-article-info">
-                      <h4 class="latest-article-title">前端性能优化指南：从加载到渲染</h4>
+                      <h4 class="latest-article-title">{{ article.title }}</h4>
                       <p class="latest-article-date">
                         <i class="far fa-calendar-alt"></i>
-                        2023年10月28日
+                        {{ article.date }}
                       </p>
                     </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="latest-article-item">
-                    <img 
-                      src="https://design.gemcoder.com/staticResource/echoAiSystemImages/7add1cc981579a7f76ee50869a2f006e.png" 
-                      alt="文章缩略图"
-                      class="latest-article-image"
-                    />
-                    <div class="latest-article-info">
-                      <h4 class="latest-article-title">React组件设计模式：从基础到高级</h4>
-                      <p class="latest-article-date">
-                        <i class="far fa-calendar-alt"></i>
-                        2023年7月18日
-                      </p>
-                    </div>
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -301,9 +276,219 @@
 <script setup>
 // 从路由参数获取文章ID
 import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 
 const route = useRoute()
 const articleId = route.params.id
+
+// 模拟所有文章的详细信息数据
+const allArticles = [
+  {
+    id: 1,
+    title: "现代前端工程化实践指南",
+    category: "前端工程化",
+    date: "2023年11月15日",
+    readTime: "12分钟阅读",
+    tags: ["#前端工程化", "#Webpack", "#Vite", "#性能优化"],
+    featuredImage: "https://design.gemcoder.com/staticResource/echoAiSystemImages/07fea791d1050c61fc4841d58b9e709d.png",
+    content: [
+      {
+        type: "h3",
+        text: "1.2 Vite：极速的开发体验"
+      },
+      {
+        type: "p",
+        text: "Vite基于浏览器原生ES模块，提供了极速的开发启动和热更新体验，越来越受到开发者青睐："
+      },
+      {
+        type: "code",
+        text: "// vite.config.js 示例"
+      },
+      {
+        type: "h2",
+        text: "结语：工程化是持续演进的过程"
+      },
+      {
+        type: "p",
+        text: "前端工程化不是一成不变的标准，而是随着技术发展不断演进的过程。作为开发者，我们需要持续学习和实践新的工具和方法，不断优化我们的开发流程。"
+      },
+      {
+        type: "p",
+        text: "希望本文能够帮助你建立对前端工程化的系统认识，在实际项目中应用这些最佳实践，提升开发效率和代码质量。"
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "前端性能优化指南：从加载到渲染",
+    category: "性能优化",
+    date: "2023年10月28日",
+    readTime: "15分钟阅读",
+    tags: ["#性能优化", "#加载优化", "#渲染性能"],
+    featuredImage: "https://design.gemcoder.com/staticResource/echoAiSystemImages/2a519e362183d2a08af1a4c96de1b92e.png",
+    content: [
+      {
+        type: "h2",
+        text: "前端性能优化的重要性"
+      },
+      {
+        type: "p",
+        text: "性能是影响用户体验的关键因素，一个快速响应的网站能够显著提升用户满意度和转化率。"
+      },
+      {
+        type: "h3",
+        text: "1. 资源加载优化"
+      },
+      {
+        type: "p",
+        text: "通过合理的资源加载策略，可以有效减少页面加载时间："
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "React组件设计模式：从基础到高级",
+    category: "框架应用",
+    date: "2023年7月18日",
+    readTime: "18分钟阅读",
+    tags: ["#React", "#组件设计", "#设计模式"],
+    featuredImage: "https://design.gemcoder.com/staticResource/echoAiSystemImages/7add1cc981579a7f76ee50869a2f006e.png",
+    content: [
+      {
+        type: "h2",
+        text: "React组件设计的基本原则"
+      },
+      {
+        type: "p",
+        text: "设计高质量的React组件需要遵循一些基本原则，包括单一职责、可复用性和可测试性。"
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "TypeScript在大型项目中的实践与最佳实践",
+    category: "TypeScript",
+    date: "2023年9月5日",
+    readTime: "10分钟阅读",
+    tags: ["#TypeScript", "#类型系统", "#代码质量"],
+    featuredImage: "https://design.gemcoder.com/staticResource/echoAiSystemImages/9eefac78f534423dd4355e80fc7b55bc.png",
+    content: [
+      {
+        type: "h2",
+        text: "TypeScript的核心优势"
+      },
+      {
+        type: "p",
+        text: "TypeScript通过静态类型检查，显著提高了代码的可维护性和可靠性，特别适合大型项目开发。"
+      }
+    ]
+  }
+]
+
+// 根据路由参数获取对应文章的详细信息
+const articleDetail = allArticles.find(article => article.id === Number(articleId)) || allArticles[0]
+
+// 模拟作者信息
+const author = {
+  id: 1,
+  name: "张开发",
+  title: "资深前端架构师 | 技术作家 | 开源贡献者",
+  bio: "拥有8年前端开发经验，专注于前端工程化和性能优化，曾主导多个大型Web应用的架构设计和技术选型。",
+  avatar: "https://design.gemcoder.com/staticResource/echoAiSystemImages/7054904f2e1ff6a86735e5618d9f935e.png",
+  socialLinks: [
+    { name: "github", icon: "fab fa-github" },
+    { name: "twitter", icon: "fab fa-twitter" },
+    { name: "linkedin", icon: "fab fa-linkedin" },
+    { name: "medium", icon: "fab fa-medium" }
+  ]
+}
+
+// 模拟相关文章数据
+const relatedArticles = [
+  {
+    id: 2,
+    title: "前端性能优化指南：从加载到渲染",
+    image: "https://design.gemcoder.com/staticResource/echoAiSystemImages/2a519e362183d2a08af1a4c96de1b92e.png",
+    date: "2023年10月28日",
+    excerpt: "深入探讨现代前端性能优化技术，包括资源加载优化、渲染性能提升和运行时优化等方面..."
+  },
+  {
+    id: 3,
+    title: "React组件设计模式：从基础到高级",
+    image: "https://design.gemcoder.com/staticResource/echoAiSystemImages/7add1cc981579a7f76ee50869a2f006e.png",
+    date: "2023年7月18日",
+    excerpt: "全面介绍React组件设计的各种模式，从基础的容器/展示组件分离到高级的复合组件和Hooks模式..."
+  }
+]
+
+// 模拟评论数据
+const comments = [
+  {
+    id: 1,
+    author: "李工程师",
+    avatar: "https://design.gemcoder.com/staticResource/echoAiSystemImages/a62614d776776aaaa52562ece25bada9.png",
+    date: "3天前",
+    content: "非常全面的前端工程化指南！特别是关于Webpack和Vite的对比分析很有帮助，解决了我一直以来的困惑。",
+    likeCount: 12
+  },
+  {
+    id: 2,
+    author: "王开发",
+    avatar: "https://design.gemcoder.com/staticResource/echoAiSystemImages/9845b17161a7a18614f82fb57a7b9688.png",
+    date: "5天前",
+    content: "文章写得很详细，对我这种刚接触工程化的新手很友好，感谢分享！",
+    likeCount: 8
+  }
+]
+
+// 评论总数
+const totalComments = comments.length
+
+// 文章分类
+const categories = [
+  { id: 1, name: "前端工程化", count: 15 },
+  { id: 2, name: "框架应用", count: 20 }
+]
+
+// 热门标签
+const hotTags = [
+  { id: 1, name: "#前端工程化" },
+  { id: 2, name: "#Webpack" },
+  { id: 3, name: "#Vite" },
+  { id: 4, name: "#性能优化" }
+]
+
+// 最新文章（用于侧边栏）
+const latestArticles = [
+  {
+    id: 2,
+    title: "前端性能优化指南：从加载到渲染",
+    image: "https://design.gemcoder.com/staticResource/echoAiSystemImages/9eefac78f534423dd4355e80fc7b55bc.png",
+    date: "2023年10月28日"
+  },
+  {
+    id: 3,
+    title: "React组件设计模式：从基础到高级",
+    image: "https://design.gemcoder.com/staticResource/echoAiSystemImages/7add1cc981579a7f76ee50869a2f006e.png",
+    date: "2023年7月18日"
+  }
+]
+
+// 根据内容类型获取对应的CSS类名
+const getClassByType = (type) => {
+  switch(type) {
+    case 'h2':
+      return 'conclusion-title';
+    case 'h3':
+      return 'section-title';
+    case 'p':
+      return 'paragraph';
+    case 'code':
+      return 'code-block';
+    default:
+      return '';
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -603,6 +788,7 @@ const articleId = route.params.id
   color: #6b7280;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1015,6 +1201,7 @@ const articleId = route.params.id
   margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color 0.3s ease;

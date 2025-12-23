@@ -61,28 +61,19 @@
             <div class="author-sidebar">
               <div class="author-sidebar-header">
                 <img 
-                  src="https://design.gemcoder.com/staticResource/echoAiSystemImages/9845b17161a7a18614f82fb57a7b9688.png" 
-                  alt="作者头像"
+                  :src="author.avatar" 
+                  :alt="author.name"
                   class="author-sidebar-avatar"
                 />
-                <h3 class="author-sidebar-name">张开发</h3>
-                <p class="author-sidebar-title">资深前端架构师</p>
+                <h3 class="author-sidebar-name">{{ author.name }}</h3>
+                <p class="author-sidebar-title">{{ author.title }}</p>
               </div>
               <p class="author-sidebar-bio">
-                专注于前端工程化、性能优化和用户体验，分享实用的技术干货。
+                {{ author.bio }}
               </p>
               <div class="author-sidebar-social">
-                <a href="javascript:void(0);" class="social-link-sidebar">
-                  <i class="fab fa-github"></i>
-                </a>
-                <a href="javascript:void(0);" class="social-link-sidebar">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="javascript:void(0);" class="social-link-sidebar">
-                  <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="javascript:void(0);" class="social-link-sidebar">
-                  <i class="fab fa-medium"></i>
+                <a href="javascript:void(0);" class="social-link-sidebar" v-for="(link, index) in author.socialLinks" :key="index">
+                  <i :class="link.icon"></i>
                 </a>
               </div>
             </div>
@@ -91,32 +82,11 @@
             <div class="categories">
               <h3 class="sidebar-section-title">文章分类</h3>
               <ul class="category-list">
-                <li>
+                <li v-for="category in categories" :key="category.id">
                   <a href="javascript:void(0);" class="category-item">
                     <i class="fas fa-folder-open"></i>
-                    <span>前端工程化</span>
-                    <span class="category-count">15</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="category-item">
-                    <i class="fas fa-folder-open"></i>
-                    <span>框架应用</span>
-                    <span class="category-count">20</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="category-item">
-                    <i class="fas fa-folder-open"></i>
-                    <span>性能优化</span>
-                    <span class="category-count">12</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0);" class="category-item">
-                    <i class="fas fa-folder-open"></i>
-                    <span>设计模式</span>
-                    <span class="category-count">8</span>
+                    <span>{{ category.name }}</span>
+                    <span class="category-count">{{ category.count }}</span>
                   </a>
                 </li>
               </ul>
@@ -126,14 +96,7 @@
             <div class="tags">
               <h3 class="sidebar-section-title">热门标签</h3>
               <div class="tag-list">
-                <a href="javascript:void(0);" class="tag-item">#前端工程化</a>
-                <a href="javascript:void(0);" class="tag-item">#Webpack</a>
-                <a href="javascript:void(0);" class="tag-item">#Vite</a>
-                <a href="javascript:void(0);" class="tag-item">#性能优化</a>
-                <a href="javascript:void(0);" class="tag-item">#React</a>
-                <a href="javascript:void(0);" class="tag-item">#Vue</a>
-                <a href="javascript:void(0);" class="tag-item">#设计模式</a>
-                <a href="javascript:void(0);" class="tag-item">#TypeScript</a>
+                <a href="javascript:void(0);" class="tag-item" v-for="tag in hotTags" :key="tag.id">{{ tag.name }}</a>
               </div>
             </div>
             
@@ -213,6 +176,41 @@ const articles = [
 
 // 最新文章（用于侧边栏）
 const latestArticles = articles.slice(0, 3)
+
+// 作者信息
+const author = {
+  id: 1,
+  name: "张开发",
+  title: "资深前端架构师",
+  bio: "专注于前端工程化、性能优化和用户体验，分享实用的技术干货。",
+  avatar: "https://design.gemcoder.com/staticResource/echoAiSystemImages/9845b17161a7a18614f82fb57a7b9688.png",
+  socialLinks: [
+    { name: "github", icon: "fab fa-github" },
+    { name: "twitter", icon: "fab fa-twitter" },
+    { name: "linkedin", icon: "fab fa-linkedin" },
+    { name: "medium", icon: "fab fa-medium" }
+  ]
+}
+
+// 文章分类
+const categories = [
+  { id: 1, name: "前端工程化", count: 15 },
+  { id: 2, name: "框架应用", count: 20 },
+  { id: 3, name: "性能优化", count: 12 },
+  { id: 4, name: "设计模式", count: 8 }
+]
+
+// 热门标签
+const hotTags = [
+  { id: 1, name: "#前端工程化" },
+  { id: 2, name: "#Webpack" },
+  { id: 3, name: "#Vite" },
+  { id: 4, name: "#性能优化" },
+  { id: 5, name: "#React" },
+  { id: 6, name: "#Vue" },
+  { id: 7, name: "#设计模式" },
+  { id: 8, name: "#TypeScript" }
+]
 </script>
 
 <style scoped lang="scss">
