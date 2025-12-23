@@ -223,7 +223,7 @@ const hotTags = [
 
 // 页面标题区域
 .page-header {
-  padding: 80px 0;
+  padding: 120px 0 80px;
   background: linear-gradient(to right, #10b98190, #10b98180);
   color: white;
   text-align: center;
@@ -512,7 +512,7 @@ const hotTags = [
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   padding: 0;
   margin: 0;
   list-style: none;

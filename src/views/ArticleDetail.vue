@@ -1085,7 +1085,7 @@ const getClassByType = (type) => {
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 4px;
   padding: 0;
   margin: 0;
   list-style: none;
