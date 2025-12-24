@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" :class="{ 'shadow-lg bg-white/95': isScrolled, 'shadow-md bg-white': !isScrolled }">
     <div class="container nav-container">
-      <a class="logo" href="javascript:void(0);"> DevPortfolio </a>
+      <a class="logo" href="javascript:void(0);"> 冷丶布丁 </a>
       <div class="mobile-menu-btn" @click="toggleMenu">
         <i class="fas" :class="isMenuOpen ? 'fa-times' : 'fa-bars'"></i>
       </div>

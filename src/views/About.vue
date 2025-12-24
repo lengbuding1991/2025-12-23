@@ -13,7 +13,7 @@
         </div>
         
         <div class="about-details">
-          <h2 class="section-heading">[你的名字] - 前端架构师与技术领导者</h2>
+          <h2 class="section-heading">[冷丶布丁] - 前端架构师与技术领导者</h2>
           
           <div class="about-section">
             <h3 class="section-subheading">专业背景</h3>
