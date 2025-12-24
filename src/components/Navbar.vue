@@ -22,12 +22,12 @@ const router = useRouter();
 const isMenuOpen = ref(false);
 const isScrolled = ref(false);
 const navItems = [
-  { id: 1, name: '首页', target: 'home', type: 'anchor' },
+  { id: 1, name: '首页', target: '/', type: 'route' },
   { id: 2, name: '关于', target: '/about', type: 'route' },
-  { id: 3, name: '技能', target: 'skills', type: 'anchor' },
-  { id: 4, name: '项目', target: 'projects', type: 'anchor' },
+  { id: 3, name: '技能', target: '/skills', type: 'route' },
+  { id: 4, name: '项目', target: '/projects', type: 'route' },
   { id: 5, name: '文章', target: '/article', type: 'route' },
-  { id: 6, name: '联系我', target: 'contact', type: 'anchor' }
+  { id: 6, name: '联系我', target: '/contact', type: 'route' }
 ];
 
 const toggleMenu = () => {
