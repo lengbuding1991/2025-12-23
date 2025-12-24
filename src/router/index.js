@@ -22,7 +22,7 @@ const routes = [
     name: 'ArticleDetail',
     component: () => import('../views/ArticleDetail.vue'),
     props: true
-  }
+  },
 ]
 
 // 创建路由实例

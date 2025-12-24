@@ -50,18 +50,23 @@
             
             <!-- 文章内容动态渲染 -->
             <div class="content-body">
-              <template v-for="(item, index) in articleDetail.content" :key="index">
-                <!-- 代码块特殊处理 -->
-                <div v-if="item.type === 'code'" class="code-block">
-                  <pre><code>{{ item.text }}</code></pre>
-                </div>
-                <!-- 其他内容类型 -->
-                <component 
-                  v-else
-                  :is="item.type"
-                  :class="getClassByType(item.type)"
-                  v-html="item.text"
-                ></component>
+              <!-- 支持富文本HTML内容 -->
+              <div v-if="typeof articleDetail.content === 'string'" v-html="articleDetail.content"></div>
+              <!-- 兼容旧的结构化内容格式 -->
+              <template v-else>
+                <template v-for="(item, index) in articleDetail.content" :key="index">
+                  <!-- 代码块特殊处理 -->
+                  <div v-if="item.type === 'code'" class="code-block">
+                    <pre><code>{{ item.text }}</code></pre>
+                  </div>
+                  <!-- 其他内容类型 -->
+                  <component 
+                    v-else
+                    :is="item.type"
+                    :class="getClassByType(item.type)"
+                    v-html="item.text"
+                  ></component>
+                </template>
               </template>
             </div>
             
